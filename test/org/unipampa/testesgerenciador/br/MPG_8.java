@@ -149,6 +149,53 @@ public class MPG_8 {
 
             inputData = parser.extractDataXML("casodeteste", nomesAtributosSubmeterPlano());
 
+            for (String[] inputs : inputData) {
+                //Apagar os dados ou não??
+                driver.findElement(By.id("formulario_cadastro_projeto:empresaProjeto")).sendKeys(inputs[0]);
+                driver.findElement(By.id("formulario_cadastro_projeto:segmentoDeClientes")).sendKeys(inputs[1]);
+                driver.findElement(By.id("formulario_cadastro_projeto:propostaDeValor")).sendKeys(inputs[2]);
+                driver.findElement(By.id("formulario_cadastro_projeto:atividadesChave")).sendKeys(inputs[3]);
+                driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar2")).click();
+
+                driver.findElement(By.id("tabAnaliseMercado")).click();
+                driver.findElement(By.id("formulario_cadastro_projeto:relacoComClientes")).sendKeys(inputs[4]);
+                driver.findElement(By.id("formulario_cadastro_projeto:parceriasChaves")).sendKeys(inputs[5]);
+                driver.findElement(By.id("formulario_cadastro_projeto:canais")).sendKeys(inputs[6]);
+                driver.findElement(By.id("formulario_cadastro_projeto:recursosPrincipais")).sendKeys(inputs[7]);
+                driver.findElement(By.id("formulario_cadastro_projeto:concorrentes")).sendKeys(inputs[8]);
+                driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar3")).click();
+
+                driver.findElement(By.id("tabProdutoServico")).click();
+                driver.findElement(By.id("formulario_cadastro_proj0eto:estagioDeEvolucao")).click();
+                driver.findElement(By.linkText(inputs[9])).click();
+                driver.findElement(By.id("formulario_cadastro_projeto:tecnologiaProcessos")).sendKeys(inputs[10]);
+                driver.findElement(By.id("formulario_cadastro_projeto:potencialInovacaoTecnologica")).sendKeys(inputs[11]);
+                driver.findElement(By.id("formulario_cadastro_projeto:aplicacoes")).sendKeys(inputs[12]);
+                driver.findElement(By.id("formulario_cadastro_projeto:dificuldadesEsperadas")).sendKeys(inputs[13]);
+                driver.findElement(By.id("formulario_cadastro_projeto:interacaoEmpresaUniversidade")).sendKeys(inputs[14]);
+                driver.findElement(By.id("formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno")).sendKeys(inputs[15]);
+                driver.findElement(By.id("formulario_cadastro_projeto:infraestrutura")).sendKeys(inputs[16]);
+                driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar4")).click();
+
+                driver.findElement(By.id("tabGestaoPessoas")).click();
+                driver.findElement(By.id("formulario_cadastro_projeto:participacaoAcionaria")).sendKeys(inputs[17]);
+                driver.findElement(By.id("formulario_cadastro_projeto:potencialEmprego")).sendKeys(inputs[18]);
+                driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar5")).click();
+
+                driver.findElement(By.id("tabPlanoFinanceiro")).click();
+                driver.findElement(By.id("formulario_cadastro_projeto:fontesDeReceita")).sendKeys(inputs[19]);
+                driver.findElement(By.id("formulario_cadastro_projeto:estruturaCustos")).sendKeys(inputs[20]);
+                driver.findElement(By.id("formulario_cadastro_projeto:investimentoInicial")).sendKeys(inputs[21]);
+                driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar6")).click();
+                
+                driver.findElement(By.id("botao_submeter")).click();
+                driver.findElement(By.id("form_enviar_projeto:j_idt221")).click();
+                driver.findElement(By.className("btn btn-success")).click();
+                if(driver.findElement(By.className("fa fa-exclamation-circle fa-2x")) != null){
+                    throw new Exception("ERRO AO SUBMETER PLANO DE NEGÓCIO COM TODOS OS DADOS VÁLIDOS.");
+                }
+            }
+
             Connection.updateResults("Submeter plano de negócio Completo.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
