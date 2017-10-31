@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
 
 /**
  *
@@ -18,15 +17,13 @@ import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
  */
 public class Login {
 
-    public static WebDriver driver;
     public static WebDriverWait wait;
-    public static ParserXML parser;
-
+    
     /**
      * Método para realizar o Login que é uma pré-condição para os testes desta
      * classe.
      */
-    public static void autenticar(String email, String senha, String url) {
+    public static void autenticar(WebDriver driver, String email, String senha, String url) {
         try {
             WebElement eElement;
             driver.manage().deleteAllCookies();

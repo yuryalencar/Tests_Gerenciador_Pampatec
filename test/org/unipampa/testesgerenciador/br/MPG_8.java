@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
+import org.unipampa.tests.evidenceerror.TestingSupport;
 import testlink.api.java.client.TestLinkAPIResults;
 
 /**
@@ -48,7 +49,7 @@ public class MPG_8 {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        Login.autenticar("testetestezin@gmail.com", "teste123456", url);
+        Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos Auxiliares">
@@ -172,18 +173,13 @@ public class MPG_8 {
             Connection.updateResults("Submeter plano de negócio Completo.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
-            
-            File diretorio = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
                     + "org" + System.getProperty("file.separator")
                     + "unipampa" + System.getProperty("file.separator")
                     + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Submeter Plano de Testes Completo - Fail");
-
-            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            diretorio.mkdirs();
-
-            FileUtils.copyFileToDirectory(screenshot, diretorio);
+                    + "evidenciaserro", "Submeter Plano de Testes Completo");
 
             Connection.updateResults("Submeter plano de negócio Completo.", e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
