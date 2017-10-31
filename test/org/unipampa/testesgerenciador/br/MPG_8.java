@@ -14,7 +14,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,35 +48,10 @@ public class MPG_8 {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        realizarLogin();
+        Login.autenticar("testetestezin@gmail.com", "teste123456");
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Realizar Login - Pré-Condição && Métodos Auxiliares">
-    /**
-     * Método para realizar o Login que é uma pré-condição para os testes desta
-     * classe.
-     */
-    private void realizarLogin() {
-        try {
-            WebElement eElement;
-            driver.manage().deleteAllCookies();
-            driver.get(url);
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("formularioDeLogin:emailInput")));
-            eElement = driver.findElement(By.id("formularioDeLogin:emailInput"));
-            eElement.click();
-            eElement.sendKeys("testetestezin@gmail.com");
-
-            eElement = driver.findElement(By.id("formularioDeLogin:senhaInput"));
-            eElement.click();
-            eElement.sendKeys("teste123456");
-
-            driver.findElement(By.id("formularioDeLogin:botaoLogin")).click();
-
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
+    //<editor-fold defaultstate="collapsed" desc="Métodos Auxiliares">
 
     /**
      * Método que cria a lista de atributos a serem extraídas do XML com a
@@ -116,6 +90,7 @@ public class MPG_8 {
     }
 
 //</editor-fold>
+    
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
