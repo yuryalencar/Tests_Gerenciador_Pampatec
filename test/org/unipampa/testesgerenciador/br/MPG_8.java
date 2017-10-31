@@ -1,18 +1,14 @@
 package org.unipampa.testesgerenciador.br;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,7 +48,6 @@ public class MPG_8 {
         Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Métodos Auxiliares">
     /**
      * Método que cria a lista de atributos a serem extraídas do XML com a
      * finalidade de servirem como dados de entrada para os casos de teste
@@ -89,7 +84,6 @@ public class MPG_8 {
         return attributesName;
     }
 
-//</editor-fold>
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
