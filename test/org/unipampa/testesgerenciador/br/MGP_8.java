@@ -23,7 +23,7 @@ import testlink.api.java.client.TestLinkAPIResults;
  *
  * @author Yury Alencar Lima
  */
-public class MPG_8 {
+public class MGP_8 {
 
     public static WebDriver driver;
     public static String url = "http://192.168.56.101:8080/GerenciadorPampatec/";
