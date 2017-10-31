@@ -80,35 +80,35 @@ public class MGP_59 {
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[4]")).click();
-            if (driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Necessita melhoria")) {
+            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Necessita melhoria\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[5]")).click();
-            if (driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Aceito para avaliação")) {
+            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Aceito para avaliação\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[6]")).click();
-            if (driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Em formalização")) {
+            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Em formalização\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[7]")).click();
-            if (driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Incubação")) {
+            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Incubação\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[8]")).click();
-            if (driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Reprovado")) {
+            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Reprovado\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
