@@ -19,7 +19,6 @@ import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
 public class Login {
 
     public static WebDriver driver;
-    public static String url = "http://192.168.56.101:8080/GerenciadorPampatec/";
     public static WebDriverWait wait;
     public static ParserXML parser;
 
@@ -27,7 +26,7 @@ public class Login {
      * Método para realizar o Login que é uma pré-condição para os testes desta
      * classe.
      */
-    public static void autenticar(String email, String senha) {
+    public static void autenticar(String email, String senha, String url) {
         try {
             WebElement eElement;
             driver.manage().deleteAllCookies();

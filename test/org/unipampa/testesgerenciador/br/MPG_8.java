@@ -48,11 +48,10 @@ public class MPG_8 {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        Login.autenticar("testetestezin@gmail.com", "teste123456");
+        Login.autenticar("testetestezin@gmail.com", "teste123456", url);
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos Auxiliares">
-
     /**
      * Método que cria a lista de atributos a serem extraídas do XML com a
      * finalidade de servirem como dados de entrada para os casos de teste
@@ -90,7 +89,6 @@ public class MPG_8 {
     }
 
 //</editor-fold>
-    
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
@@ -162,11 +160,11 @@ public class MPG_8 {
                 driver.findElement(By.id("formulario_cadastro_projeto:estruturaCustos")).sendKeys(inputs[20]);
                 driver.findElement(By.id("formulario_cadastro_projeto:investimentoInicial")).sendKeys(inputs[21]);
                 driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar6")).click();
-                
+
                 driver.findElement(By.id("botao_submeter")).click();
                 driver.findElement(By.id("form_enviar_projeto:j_idt221")).click();
                 driver.findElement(By.className("btn btn-success")).click();
-                if(driver.findElement(By.className("fa fa-exclamation-circle fa-2x")) != null){
+                if (driver.findElement(By.className("fa fa-exclamation-circle fa-2x")) != null) {
                     throw new Exception("ERRO AO SUBMETER PLANO DE NEGÓCIO COM TODOS OS DADOS VÁLIDOS.");
                 }
             }
@@ -174,6 +172,7 @@ public class MPG_8 {
             Connection.updateResults("Submeter plano de negócio Completo.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
+            
             File diretorio = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
                     + "org" + System.getProperty("file.separator")
