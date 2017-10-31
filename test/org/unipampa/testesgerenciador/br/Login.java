@@ -18,25 +18,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login {
 
     public static WebDriverWait wait;
-    
+
     /**
      * Método para realizar o Login que é uma pré-condição para os testes desta
      * classe.
+     *
+     * @param driver
+     * @param email
+     * @param senha
+     * @param url
      */
     public static void autenticar(WebDriver driver, String email, String senha, String url) {
         try {
-            WebElement eElement;
             driver.manage().deleteAllCookies();
             driver.get(url);
-
+            
             wait.until(ExpectedConditions.elementToBeClickable(By.id("formularioDeLogin:emailInput")));
-            eElement = driver.findElement(By.id("formularioDeLogin:emailInput"));
-            eElement.click();
-            eElement.sendKeys(email);
-
-            eElement = driver.findElement(By.id("formularioDeLogin:senhaInput"));
-            eElement.click();
-            eElement.sendKeys(senha);
+            driver.findElement(By.id("formularioDeLogin:emailInput")).sendKeys(email);
+            driver.findElement(By.id("formularioDeLogin:senhaInput")).sendKeys(senha);
 
             driver.findElement(By.id("formularioDeLogin:botaoLogin")).click();
 
