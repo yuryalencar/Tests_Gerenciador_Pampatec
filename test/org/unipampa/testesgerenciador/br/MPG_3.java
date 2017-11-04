@@ -28,7 +28,7 @@ import testlink.api.java.client.TestLinkAPIResults;
 public class MPG_3 {
 
     public static WebDriver driver;
-    public static String url = "http://192.168.130.102:8080/GerenciadorPampatec";
+    public static String url = "http://192.168.56.102:8080/GerenciadorPampatec/";
     public static WebDriverWait wait;
     public static ParserXML parser;
     public static final String TESTLINK_KEY = "8305a296244bd063e868bf5a357946d0";
@@ -41,13 +41,13 @@ public class MPG_3 {
      */
     @Before
     public void openBrowser() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 1000);
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        Login.autenticar(driver, "testetestezin@gmail.com", "teste", url);
+        Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
     }
 
     @Test
