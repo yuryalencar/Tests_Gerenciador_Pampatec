@@ -48,13 +48,12 @@ public class MGP_8 {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos auxiliares">
-    private void preencherCampos() throws Exception {
+    private void preencherCampos(boolean dataValid) throws Exception {
         int cont = 1;
-        Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
         List<String[]> inputData = parser.extractDataXML("casodeteste", nomesAtributosSubmeterPlano());
 
         for (String[] inputs : inputData) {
-
+            Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
             if (!driver.getTitle().equals("Página Principal - Empreendedor")) {
                 throw new Exception("Verifique o pré-requisito.");
             }
@@ -128,8 +127,14 @@ public class MGP_8 {
             driver.findElement(By.xpath("//*[@id=\"form_enviar_projeto:j_idt221\"]")).click();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")));
             driver.findElement(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")).click();
-            if (driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
-                throw new Exception("Erro ao submeter o projeto");
+            if (dataValid) {
+                if (driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
+                    throw new Exception("Erro ao submeter o projeto utilizando dados válidos.");
+                }
+            } else {
+                if (!driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
+                    throw new Exception("Foi possível submeter o projeto mesmo utilizando dados inválidos.");
+                }
             }
             cont++;
         }
@@ -172,13 +177,12 @@ public class MGP_8 {
     }
 
 //</editor-fold>
-
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
      * @throws Exception
      */
-    @Test
+//    @Test
     public void submeterPlanoDeTestesCompletoDadosValidos() throws Exception {
         System.out.println("Submeter Plano de Testes Completo com Dados Válidos.");
         parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
@@ -189,7 +193,7 @@ public class MGP_8 {
                 + "datatests" + System.getProperty("file.separator")
                 + "MGP-8(SubmeterPlanoDadosValidos).xml");
         try {
-            preencherCampos();
+            preencherCampos(true);
             Connection.updateResults("Submeter plano de negócio Completo.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
@@ -223,8 +227,12 @@ public class MGP_8 {
                 + "testesgerenciador" + System.getProperty("file.separator")
                 + "datatests" + System.getProperty("file.separator")
                 + "MGP-8(SubmeterPlanoDadosInvalidos).xml");
+
         try {
-            preencherCampos();
+            preencherCampos(false);
+            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", null,
+                    TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+        } catch (Exception e) {
 
             TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
@@ -233,17 +241,11 @@ public class MGP_8 {
                     + "testesgerenciador" + System.getProperty("file.separator")
                     + "evidenciaserro", "Submeter plano de negócio com empreendedores possuindo cadastro incompleto");
 
-            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", "Foi possível submeter o plano"
-                    + "mesmo utilizando dados inválidos - Lista com os dados fornecidas"
+            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", e.getMessage() + " - Lista com os dados utilizados fornecidas"
                     + "no MantisBT como referência.",
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
-        
-            Assert.fail("Foi possível submeter o plano mesmo utilizando dados inválidos - Lista com os dados fornecidas"
-                    + "no MantisBT como referência.");
-            
-        } catch (Exception e) {
-            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", null,
-                    TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
         }
     }
 
