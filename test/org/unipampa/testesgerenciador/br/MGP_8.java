@@ -182,7 +182,7 @@ public class MGP_8 {
      *
      * @throws Exception
      */
-//    @Test
+    @Test
     public void submeterPlanoDeTestesCompletoDadosValidos() throws Exception {
         System.out.println("Submeter Plano de Testes Completo com Dados Válidos.");
         parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
