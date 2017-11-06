@@ -27,7 +27,7 @@ import testlink.api.java.client.TestLinkAPIResults;
 public class MGP_59 {
 
     public static WebDriver driver;
-    public static String url = "http://192.168.56.102:8080/GerenciadorPampatec/";
+    public static String url = "http://192.168.56.101:8080/GerenciadorPampatec/";
     public static WebDriverWait wait;
     public static ParserXML parser;
     public static final String TESTLINK_KEY = "e462370c35a05bab566ee54b202b6a23";

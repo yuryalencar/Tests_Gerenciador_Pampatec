@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ import testlink.api.java.client.TestLinkAPIResults;
 public class MGP_8 {
 
     public static WebDriver driver;
-    public static String url = "http://192.168.56.102:8080/GerenciadorPampatec/";
+    public static String url = "http://192.168.56.101:8080/GerenciadorPampatec/";
     public static WebDriverWait wait;
     public static ParserXML parser;
     public static final String TESTLINK_KEY = "e462370c35a05bab566ee54b202b6a23";
@@ -48,8 +49,22 @@ public class MGP_8 {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos auxiliares">
-    private void preencherCampos(boolean dataValid) throws Exception {
-        int cont = 1;
+    private void adicionarLinhasVariaveis(List<Integer> lines) {
+        int cont = 0;
+        for (Integer line : lines) {
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel\"]")));
+            driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel\"]")).click();
+            driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosVariaveis:" + cont + ":j_idt187\"]/span[1]")).click();
+            driver.findElement(By.id("formulario_cadastro_projeto:novaTabelaCustosVariaveis:" + cont + ":j_idt183")).sendKeys(String.valueOf(line));
+            driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosVariaveis:" + cont + ":j_idt187\"]/span[2]")).click();
+            cont++;
+        }
+    }
+
+    private void preencherCampos(boolean dataValid, List<Integer> lines) throws Exception {
+        int cont = 1, casoTeste = 1;
+        boolean error = false;
+        String errorMessage = "O Teste apontou erros nos respectivos casos de teste presentes no arquivo:";
         List<String[]> inputData = parser.extractDataXML("casodeteste", nomesAtributosSubmeterPlano());
 
         for (String[] inputs : inputData) {
@@ -117,6 +132,9 @@ public class MGP_8 {
             driver.findElement(By.id("formulario_cadastro_projeto:fontesDeReceita")).sendKeys(inputs[18]);
             driver.findElement(By.id("formulario_cadastro_projeto:estruturaCustos")).sendKeys(inputs[19]);
             driver.findElement(By.id("formulario_cadastro_projeto:investimentoInicial")).sendKeys(inputs[20]);
+            if (!lines.isEmpty()) {
+                adicionarLinhasVariaveis(lines);
+            }
             driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar6")).click();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSalvar\"]/div/div/div[3]/input")));
             driver.findElement(By.xpath("//*[@id=\"modalInfoSalvar\"]/div/div/div[3]/input")).click();
@@ -128,15 +146,24 @@ public class MGP_8 {
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")));
             driver.findElement(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")).click();
             if (dataValid) {
-                if (driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
-                    throw new Exception("Erro ao submeter o projeto utilizando dados válidos.");
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")));
+                if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemSalvamento")).getText().equals("")) {
+                    error = true;
+                    errorMessage += "\nCaso de teste: " + casoTeste;
                 }
             } else {
-                if (!driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
-                    throw new Exception("Foi possível submeter o projeto mesmo utilizando dados inválidos.");
+                if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemErroSubmissao")).getText().equals("")) {
+                    error = true;
+                    errorMessage = (cont == 6) ? "\nCaso de teste: " + casoTeste + " Obs.: Com o Outros não especificado e sem Custos Variáveis" : "\nCaso de teste: " + casoTeste + " Obs.: Sem Custos Variáveis";
+                    errorMessage += "\nCaso de teste: " + casoTeste;
                 }
             }
-            cont++;
+            cont = (cont == 6) ? 0 : cont++;
+            casoTeste++;
+        }
+
+        if (error) {
+            throw new Exception(errorMessage);
         }
     }
 
@@ -159,7 +186,6 @@ public class MGP_8 {
         attributesName.add("canais");
         attributesName.add("recursos");
         attributesName.add("concorrentes");
-        attributesName.add("estagioEvolucao");
         attributesName.add("tecnologia");
         attributesName.add("potencialInovacao");
         attributesName.add("aplicacoes");
@@ -183,8 +209,45 @@ public class MGP_8 {
      * @throws Exception
      */
     @Test
-    public void submeterPlanoDeTestesCompletoDadosValidos() throws Exception {
-        System.out.println("Submeter Plano de Testes Completo com Dados Válidos.");
+    public void submeterPlanoDeNegocioDadosInvalidos() throws Exception {
+        System.out.println("Submeter Plano de Negócio com Dados inválidos.");
+        parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                + "test" + System.getProperty("file.separator")
+                + "org" + System.getProperty("file.separator")
+                + "unipampa" + System.getProperty("file.separator")
+                + "testesgerenciador" + System.getProperty("file.separator")
+                + "datatests" + System.getProperty("file.separator")
+                + "MGP-8(SubmeterPlanoDadosInvalidos).xml");
+
+        try {
+            preencherCampos(false, new ArrayList<Integer>());
+//            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", null,
+//                    TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+        } catch (Exception e) {
+
+//            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+//                    + "test" + System.getProperty("file.separator")
+//                    + "org" + System.getProperty("file.separator")
+//                    + "unipampa" + System.getProperty("file.separator")
+//                    + "testesgerenciador" + System.getProperty("file.separator")
+//                    + "evidenciaserro", "Submeter plano de negócio com Dados inválidos");
+//            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", e.getMessage() + " - Lista com os dados utilizados fornecidas"
+//                    + "no MantisBT como referência.",
+//                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Finalizados">
+    /**
+     * Exemplo de método de teste utilizando reports integrados com o TestLink.
+     *
+     * @throws Exception
+     */
+    @Ignore
+    @Test
+    public void submeterPlanoDeNegocioCompletoDadosValidos() throws Exception {
+        System.out.println("Submeter Plano de Negócio Completo com Dados Válidos.");
         parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
                 + "test" + System.getProperty("file.separator")
                 + "org" + System.getProperty("file.separator")
@@ -193,8 +256,12 @@ public class MGP_8 {
                 + "datatests" + System.getProperty("file.separator")
                 + "MGP-8(SubmeterPlanoDadosValidos).xml");
         try {
-            preencherCampos(true);
-            Connection.updateResults("Submeter plano de negócio Completo.", null,
+            ArrayList<Integer> lines = new ArrayList();
+            lines.add(20);
+            lines.add(0);
+            lines.add(100000);
+            preencherCampos(true, lines);
+            Connection.updateResults("Submeter plano de negócio com Dados Válidos.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
 
@@ -203,9 +270,8 @@ public class MGP_8 {
                     + "org" + System.getProperty("file.separator")
                     + "unipampa" + System.getProperty("file.separator")
                     + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Submeter Plano de Testes Completo");
-
-            Connection.updateResults("Submeter plano de negócio Completo.", e.getMessage() + ". Sendo o mesmo"
+                    + "evidenciaserro", "Submeter plano de negócio com Dados Válidos");
+            Connection.updateResults("Submeter plano de negócio com Dados Válidos.", e.getMessage() + ". Sendo o mesmo"
                     + " preenchendo todos os campos utilizando valores válidos.",
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
             Assert.fail(e.getMessage());
@@ -217,20 +283,42 @@ public class MGP_8 {
      *
      * @throws Exception
      */
+    @Ignore
     @Test
-    public void submeterPlanoDeTestesDadosInvalidos() throws Exception {
-        System.out.println("Submeter Plano de Testes com Dados inválidos.");
-        parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
-                + "test" + System.getProperty("file.separator")
-                + "org" + System.getProperty("file.separator")
-                + "unipampa" + System.getProperty("file.separator")
-                + "testesgerenciador" + System.getProperty("file.separator")
-                + "datatests" + System.getProperty("file.separator")
-                + "MGP-8(SubmeterPlanoDadosInvalidos).xml");
+    public void submeterPlanoDeNegocioEmBranco() throws Exception {
+        System.out.println("Submeter Plano de  Negócio em Branco.");
 
         try {
-            preencherCampos(false);
-            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", null,
+
+            Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
+            if (!driver.getTitle().equals("Página Principal - Empreendedor")) {
+                throw new Exception("Verifique o pré-requisito.");
+            }
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/a")));
+            driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/a")).click();
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/ul/li[1]/input")));
+            driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/ul/li[1]/input")).click();
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("formEquipe:botaoSalvar1")));
+            driver.findElement(By.id("formEquipe:botaoSalvar1")).click();
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.name("formulario_cadastro_projeto:j_idt65")));
+            driver.findElement(By.name("formulario_cadastro_projeto:j_idt65")).click();
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("botao_submeter")));
+            driver.findElement(By.id("botao_submeter")).click();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"form_enviar_projeto:j_idt221\"]")));
+            driver.findElement(By.xpath("//*[@id=\"form_enviar_projeto:j_idt221\"]")).click();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")));
+            driver.findElement(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")).click();
+
+            if (!driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:j_idt69:0:notificacaoErroSubmissao\"]")).isDisplayed()) {
+                throw new Exception("Foi possível submeter um projeto em branco.");
+            }
+
+            Connection.updateResults("Submeter plano de negócio em branco.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
 
@@ -239,15 +327,15 @@ public class MGP_8 {
                     + "org" + System.getProperty("file.separator")
                     + "unipampa" + System.getProperty("file.separator")
                     + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Submeter plano de negócio com empreendedores possuindo cadastro incompleto");
+                    + "evidenciaserro", "Submeter plano de negócio em branco ");
 
-            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.", e.getMessage() + " - Lista com os dados utilizados fornecidas"
-                    + "no MantisBT como referência.",
+            Connection.updateResults("Submeter plano de negócio em branco.", e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
         }
     }
+    //</editor-fold>
 
     /**
      * Método que contém a finalidade de fechar o navegador depois de cada
