@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <casodeteste Nome = "Juliana Mareco Medeiros" CPF = "95035146065" Telefone = "5481988434" Experiencia = "" 
+    Formacao = "" Logradouro = "Tiaraju" Numero = "239" Bairro = "Ibirapuitã"
+    Complemento = "" Email = "julianamareco18@gmail.com" Senha = "teste123456" ConfSenha = "teste123456"/>
+</root>
