@@ -61,7 +61,7 @@ public class MGP_8 {
         }
     }
 
-    private void preencherCampos(boolean dataValid, List<Integer> lines) throws Exception {
+    private void preencherCampos(boolean dataValid, List<Integer> lines, String nameMethod) throws Exception {
         int cont = 1, casoTeste = 1;
         boolean error = false;
         String errorMessage = "O Teste apontou erros nos respectivos casos de teste presentes no arquivo:";
@@ -150,15 +150,23 @@ public class MGP_8 {
                 if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemSalvamento")).getText().equals("")) {
                     error = true;
                     errorMessage += "\nCaso de teste: " + casoTeste;
+                    screenShotError(nameMethod);
                 }
             } else {
                 if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemErroSubmissao")).getText().equals("")) {
                     error = true;
-                    errorMessage = (cont == 6) ? "\nCaso de teste: " + casoTeste + " Obs.: Com o Outros não especificado e sem Custos Variáveis" : "\nCaso de teste: " + casoTeste + " Obs.: Sem Custos Variáveis";
-                    errorMessage += "\nCaso de teste: " + casoTeste;
+                    if (cont == 7) {
+                        errorMessage += "\nCaso de teste: " + casoTeste + " Obs.: Com o Outros não especificado e sem Custos Variáveis";
+                    } else {
+                        errorMessage += "\nCaso de teste: " + casoTeste + " Obs.: Sem Custos Variáveis";
+                    }
+                    screenShotError(nameMethod);
                 }
             }
-            cont = (cont == 6) ? 0 : cont++;
+            if (cont == 7) {
+                cont = 0;
+            }
+            cont++;
             casoTeste++;
         }
 
@@ -202,12 +210,25 @@ public class MGP_8 {
         return attributesName;
     }
 
+    private void screenShotError(String nameMethod) throws Exception {
+        TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                + "test" + System.getProperty("file.separator")
+                + "org" + System.getProperty("file.separator")
+                + "unipampa" + System.getProperty("file.separator")
+                + "testesgerenciador" + System.getProperty("file.separator")
+                + "evidenciaserro", nameMethod);
+    }
+
 //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Finalizados">
+
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
      * @throws Exception
      */
+    @Ignore
     @Test
     public void submeterPlanoDeNegocioDadosInvalidos() throws Exception {
         System.out.println("Submeter Plano de Negócio com Dados inválidos.");
@@ -220,25 +241,18 @@ public class MGP_8 {
                 + "MGP-8(SubmeterPlanoDadosInvalidos).xml");
 
         try {
-            preencherCampos(false, new ArrayList<Integer>());
-//            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", null,
-//                    TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+            preencherCampos(false, new ArrayList<Integer>(), "Submeter plano de negócio com Dados inválidos");
+            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", null,
+                    TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
 
-//            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-//                    + "test" + System.getProperty("file.separator")
-//                    + "org" + System.getProperty("file.separator")
-//                    + "unipampa" + System.getProperty("file.separator")
-//                    + "testesgerenciador" + System.getProperty("file.separator")
-//                    + "evidenciaserro", "Submeter plano de negócio com Dados inválidos");
-//            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", e.getMessage() + " - Lista com os dados utilizados fornecidas"
-//                    + "no MantisBT como referência.",
-//                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+            Connection.updateResults("Submeter plano de negócio com Dados inválidos.", e.getMessage() + "\nObs.: Lista com os dados utilizados fornecidas"
+                    + " no MantisBT e em anexo no TestLink.",
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
             Assert.fail(e.getMessage());
         }
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Finalizados">
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
      *
@@ -260,17 +274,11 @@ public class MGP_8 {
             lines.add(20);
             lines.add(0);
             lines.add(100000);
-            preencherCampos(true, lines);
+            preencherCampos(true, lines, "Submeter plano de negócio com Dados Válidos");
             Connection.updateResults("Submeter plano de negócio com Dados Válidos.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
 
-            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-                    + "test" + System.getProperty("file.separator")
-                    + "org" + System.getProperty("file.separator")
-                    + "unipampa" + System.getProperty("file.separator")
-                    + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Submeter plano de negócio com Dados Válidos");
             Connection.updateResults("Submeter plano de negócio com Dados Válidos.", e.getMessage() + ". Sendo o mesmo"
                     + " preenchendo todos os campos utilizando valores válidos.",
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
