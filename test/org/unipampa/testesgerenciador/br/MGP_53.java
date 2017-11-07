@@ -68,12 +68,12 @@ public class MGP_53 {
         List<String[]> inputData;
 
         inputData = parser.extractDataXML("casodeteste", nomesAtributos());
-        driver.manage().deleteAllCookies();
-        driver.get(url);
 
         try {
 
             for (String[] data : inputData) {
+                driver.manage().deleteAllCookies();
+                driver.get(url);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:emailInput']")).sendKeys(data[0]);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:senhaInput']")).sendKeys(data[1]);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:botaoLogin']/span[2]")).click();
@@ -82,7 +82,7 @@ public class MGP_53 {
                     Connection.updateResults(nomeCasoTeste, null,
                             TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
                 } else {
-                    throw new Exception("Login Falhou!");
+                    throw new Exception("ERRO AO LOGAR COM EMAIL E SENHA VÁLIDOS.");
                 }
             }
 
@@ -198,7 +198,7 @@ public class MGP_53 {
         String nomeCasoTeste = "Logar com usuário e senhas SQL Injection";
 
         System.out.println(nomeCasoTeste);
-        
+
         parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
                 + "test" + System.getProperty("file.separator")
                 + "org" + System.getProperty("file.separator")
@@ -209,18 +209,18 @@ public class MGP_53 {
         List<String[]> inputData;
 
         inputData = parser.extractDataXML("casodeteste", nomesAtributos());
-        driver.manage().deleteAllCookies();
-        driver.get(url);
 
         try {
 
             for (String[] data : inputData) {
+                driver.manage().deleteAllCookies();
+                driver.get(url);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:emailInput']")).sendKeys(data[0]);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:senhaInput']")).sendKeys(data[1]);
                 driver.findElement(By.xpath("//*[@id='formularioDeLogin:botaoLogin']/span[2]")).click();
 
                 if (driver.getCurrentUrl().equalsIgnoreCase("http://192.168.130.102:8080/GerenciadorPampatec/view/empreendedor/homeEmpreendedor.jsf")) {
-                    throw new Exception("Login Falhou!");
+                    throw new Exception("ERRO FOI POSSIVEL LOGAR COM SQL INJECTION!");
 
                 } else {
                     Connection.updateResults(nomeCasoTeste, null,
@@ -241,6 +241,46 @@ public class MGP_53 {
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void logarVariasVezes() throws Exception {
+        String nomeCasoTeste = "Logar Varias Vezes";
+
+        System.out.println(nomeCasoTeste);
+        int nLogins = 20;
+
+        for (int i = 0; i < nLogins; i++) {
+            try {
+
+                driver.manage().deleteAllCookies();
+                driver.get(url);
+                driver.findElement(By.xpath("//*[@id='formularioDeLogin:emailInput']")).sendKeys("testetestezin@gmail.com");
+                driver.findElement(By.xpath("//*[@id='formularioDeLogin:senhaInput']")).sendKeys("teste123456");
+                driver.findElement(By.xpath("//*[@id='formularioDeLogin:botaoLogin']/span[2]")).click();
+
+                if (driver.findElement(By.xpath("//*[@id='formularioDeLogin']/div[1]/span")).getText().equalsIgnoreCase("Deve ser preenchido o usuário e senha")) {
+                    Connection.updateResults(nomeCasoTeste, null,
+                            TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+                } else {
+                    throw new Exception("ERRO AO LOGAR NA TENTATIVA" + i);
+                }
+
+            } catch (Exception e) {
+
+                TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                        + "test" + System.getProperty("file.separator")
+                        + "org" + System.getProperty("file.separator")
+                        + "unipampa" + System.getProperty("file.separator")
+                        + "testesgerenciador" + System.getProperty("file.separator")
+                        + "evidenciaserro", nomeCasoTeste);
+
+                Connection.updateResults(nomeCasoTeste, null,
+                        TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+                Assert.fail(e.getMessage() + "NA TENTATIVA" +  i);
+            }
         }
     }
 
