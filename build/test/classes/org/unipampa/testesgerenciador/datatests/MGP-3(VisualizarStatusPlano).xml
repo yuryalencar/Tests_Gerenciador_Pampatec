@@ -7,6 +7,6 @@ and open the template in the editor.
 
 
 <suitedeteste>
-    <casodeteste StatusPlano="Em Pré-Avaliação"/>
     <casodeteste StatusPlano="Em elaboração"/>
+    <casodeteste StatusPlano="Em Pré-Avaliação"/>
 </suitedeteste>
