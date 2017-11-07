@@ -95,7 +95,7 @@ public class MGP_53 {
                     + "testesgerenciador" + System.getProperty("file.separator")
                     + "evidenciaserro", nomeCasoTeste);
 
-            Connection.updateResults(nomeCasoTeste, null,
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
@@ -147,7 +147,7 @@ public class MGP_53 {
                     + "testesgerenciador" + System.getProperty("file.separator")
                     + "evidenciaserro", nomeCasoTeste);
 
-            Connection.updateResults(nomeCasoTeste, null,
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
@@ -185,7 +185,7 @@ public class MGP_53 {
                     + "testesgerenciador" + System.getProperty("file.separator")
                     + "evidenciaserro", nomeCasoTeste);
 
-            Connection.updateResults(nomeCasoTeste, null,
+            Connection.updateResults(nomeCasoTeste,e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
@@ -237,7 +237,7 @@ public class MGP_53 {
                     + "testesgerenciador" + System.getProperty("file.separator")
                     + "evidenciaserro", nomeCasoTeste);
 
-            Connection.updateResults(nomeCasoTeste, null,
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
                     TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
             Assert.fail(e.getMessage());
@@ -276,10 +276,10 @@ public class MGP_53 {
                         + "testesgerenciador" + System.getProperty("file.separator")
                         + "evidenciaserro", nomeCasoTeste);
 
-                Connection.updateResults(nomeCasoTeste, null,
+                Connection.updateResults(nomeCasoTeste, e.getMessage(),
                         TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
 
-                Assert.fail(e.getMessage() + "NA TENTATIVA" +  i);
+                Assert.fail(e.getMessage() + "NA TENTATIVA " +  i);
             }
         }
     }
