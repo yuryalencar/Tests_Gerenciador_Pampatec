@@ -5,11 +5,12 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<!--225.450.956-05 cpf valido-->
-
 <root>
     <suitedeteste>
-        <casodeteste Usuario="testetestezin@gmail.com" Senha="teste123456"/>    
+        <casodeteste Usuario="testetestezin@gmail.com" Senha="teste123456"/>
+        <casodeteste Usuario="22545095605" Senha="teste123456"/>
+        <casodeteste Usuario="zpxgciot@abyssmail.com" Senha="11223344"/>
+        <casodeteste Usuario="38194343216" Senha="11223344"/>
     </suitedeteste>
 </root>
 
