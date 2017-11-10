@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
 import org.unipampa.tests.evidenceerror.TestingSupport;
+import testlink.api.java.client.TestLinkAPIException;
 import testlink.api.java.client.TestLinkAPIResults;
 
 /**
@@ -30,6 +31,7 @@ public class MGP_8 {
     public static String url = "http://192.168.56.101:8080/GerenciadorPampatec/";
     public static WebDriverWait wait;
     public static ParserXML parser;
+    public static ParserXML parserAux;
     public static final String TESTLINK_KEY = "e462370c35a05bab566ee54b202b6a23";
 
     /**
@@ -49,6 +51,20 @@ public class MGP_8 {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos auxiliares">
+
+    private void zerarCustos() {
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt166\"]/span[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162\"]")).sendKeys("0");
+        
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt166\"]/span[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162\"]")).sendKeys("0");
+        System.out.println("aquifoi");
+    
+        driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:botao_adicionar_nova_linha\"]")).click();
+    }
+
     private void adicionarLinhasVariaveis(List<Integer> lines) {
         int cont = 0;
         for (Integer line : lines) {
@@ -61,7 +77,8 @@ public class MGP_8 {
         }
     }
 
-    private void preencherCampos(boolean dataValid, List<Integer> lines, String nameMethod) throws Exception {
+    private void preencherCampos(boolean dataValid, List<Integer> lines, String nameMethod, 
+            boolean addEmpreendedoresError, boolean custoZero) throws Exception {
         int cont = 1, casoTeste = 1;
         boolean error = false;
         String errorMessage = "O Teste apontou erros nos respectivos casos de teste presentes no arquivo:";
@@ -79,9 +96,22 @@ public class MGP_8 {
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/ul/li[1]/input")));
             driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[2]/ul/li[1]/input")).click();
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("formEquipe:botaoSalvar1")));
-            driver.findElement(By.id("formEquipe:botaoSalvar1")).click();
+            if (addEmpreendedoresError) {
+                List<String> value = new ArrayList();
+                value.add("email");
+                List<String[]> inputDataEmpreendedorError = parserAux.extractDataXML("casoteste", value);
+                wait.until(ExpectedConditions.elementToBeClickable(By.id("formEquipe:autocomplete_input")));
+                for (String[] input : inputDataEmpreendedorError) {
+                    Thread.sleep(2000);
+                    driver.findElement(By.id("formEquipe:autocomplete_input")).sendKeys(input[0]);
+                    driver.findElement(By.id("formEquipe:j_idt203")).click();
+                }
+            }
+            if (!addEmpreendedoresError) {
+                wait.until(ExpectedConditions.elementToBeClickable(By.id("formEquipe:botaoSalvar1")));
+            }
 
+            driver.findElement(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]")).click();
             wait.until(ExpectedConditions.elementToBeClickable(By.name("formulario_cadastro_projeto:j_idt65")));
             driver.findElement(By.name("formulario_cadastro_projeto:j_idt65")).click();
 
@@ -135,6 +165,9 @@ public class MGP_8 {
             if (!lines.isEmpty()) {
                 adicionarLinhasVariaveis(lines);
             }
+            if(custoZero){
+                zerarCustos();
+            }
             driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar6")).click();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSalvar\"]/div/div/div[3]/input")));
             driver.findElement(By.xpath("//*[@id=\"modalInfoSalvar\"]/div/div/div[3]/input")).click();
@@ -147,9 +180,29 @@ public class MGP_8 {
             driver.findElement(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")).click();
             if (dataValid) {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"modalInfoSubmeter\"]/div/div/div[3]/input")));
-                if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemSalvamento")).getText().equals("")) {
+                if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemSalvamento")).getText().equals("")
+                        && !addEmpreendedoresError && !custoZero) {
                     error = true;
                     errorMessage += "\nCaso de teste: " + casoTeste;
+                    if (addEmpreendedoresError) {
+                        errorMessage += " - Foi possível submeter com os empreendedores com cadastro incompleto.";
+                    }
+                    screenShotError(nameMethod);
+                } else if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemErroSubmissao")).getText().equals("")
+                        && addEmpreendedoresError) {
+                    error = true;
+                    errorMessage += "\nCaso de teste: " + casoTeste;
+                    if (addEmpreendedoresError) {
+                        errorMessage += " - Foi possível submeter com os empreendedores com cadastro incompleto.";
+                    }
+                    screenShotError(nameMethod);
+                } else if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemErroSubmissao")).getText().equals("")
+                        && !addEmpreendedoresError && custoZero){
+                    error = true;
+                    errorMessage += "\nCaso de teste: " + casoTeste;
+                    if (addEmpreendedoresError) {
+                        errorMessage += " - Foi possível submeter com os custos iguais a zero.";
+                    }
                     screenShotError(nameMethod);
                 }
             } else {
@@ -221,7 +274,62 @@ public class MGP_8 {
 
 //</editor-fold>
     
+    @Test
+    public void submeterPlanoDeNegocioCustoZero() throws TestLinkAPIException {
+        System.out.println("Submeter plano de negócio com Custos iguais a zero.");
+        try {
+            parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "datatests" + System.getProperty("file.separator")
+                    + "MGP-8(SubmeterPlanoDadosValidos).xml");
+
+            preencherCampos(true, new ArrayList(), "Submeter plano de negócio com Custos iguais a zero", false, true);
+
+            Connection.updateResults("Submeter plano de negócio com Custos iguais a zero.",
+                    null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+        } catch (Exception e) {
+            Connection.updateResults("Submeter plano de negócio com Custos iguais a zero.",
+                    e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+            Assert.fail(e.getMessage());
+        }
+    }
+
     //<editor-fold defaultstate="collapsed" desc="Finalizados">
+    @Ignore
+    @Test
+    public void submeterPlanoDeNegocioCadastroIncompletoEmpreendedores() throws TestLinkAPIException {
+        System.out.println("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.");
+        try {
+            parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "datatests" + System.getProperty("file.separator")
+                    + "MGP-8(SubmeterPlanoDadosValidos).xml");
+
+            parserAux = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "datatests" + System.getProperty("file.separator")
+                    + "MGP-8(EmailsInvalidosENaoCadastrados).xml");
+
+            preencherCampos(true, new ArrayList(),
+                    "Submeter plano de negócio com empreendedores possuindo cadastro incompleto", true, false);
+
+            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.",
+                    null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+        } catch (Exception e) {
+            Connection.updateResults("Submeter plano de negócio com empreendedores possuindo cadastro incompleto.",
+                    e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+            Assert.fail(e.getMessage());
+        }
+    }
 
     /**
      * Exemplo de método de teste utilizando reports integrados com o TestLink.
@@ -241,7 +349,7 @@ public class MGP_8 {
                 + "MGP-8(SubmeterPlanoDadosInvalidos).xml");
 
         try {
-            preencherCampos(false, new ArrayList<Integer>(), "Submeter plano de negócio com Dados inválidos");
+            preencherCampos(false, new ArrayList<Integer>(), "Submeter plano de negócio com Dados inválidos", false, false);
             Connection.updateResults("Submeter plano de negócio com Dados inválidos.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
@@ -274,7 +382,7 @@ public class MGP_8 {
             lines.add(20);
             lines.add(0);
             lines.add(100000);
-            preencherCampos(true, lines, "Submeter plano de negócio com Dados Válidos");
+            preencherCampos(true, lines, "Submeter plano de negócio com Dados Válidos", false, false);
             Connection.updateResults("Submeter plano de negócio com Dados Válidos.", null,
                     TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
