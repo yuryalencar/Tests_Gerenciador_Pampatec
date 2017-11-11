@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
  */
 public class Login {
 
+    public static int timeToSleep = 500;
+    
     /**
      * Método para realizar o Login que é uma pré-condição para os testes desta
      * classe.
@@ -27,8 +29,11 @@ public class Login {
         try {
             driver.manage().deleteAllCookies();
             driver.get(url);
+            Thread.sleep(timeToSleep);
             driver.findElement(By.id("formularioDeLogin:emailInput")).sendKeys(email);
+            Thread.sleep(timeToSleep);
             driver.findElement(By.id("formularioDeLogin:senhaInput")).sendKeys(senha);
+            Thread.sleep(timeToSleep);
             driver.findElement(By.id("formularioDeLogin:botaoLogin")).click();
         } catch (Exception e) {
             e.getMessage();
