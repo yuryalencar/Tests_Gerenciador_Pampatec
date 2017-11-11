@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
 import static org.unipampa.testesgerenciador.br.Login.timeToSleep;
@@ -67,27 +68,34 @@ public class MGP_11 {
         Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div[2]/a")));
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")));
         driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
         driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
         for (String[] input : inputData) {
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
             driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).sendKeys(input[0]);
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")));
             driver.findElement(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")).click();
 
         }
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")));
         driver.findElement(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")));
         driver.findElement(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")).click();
 
     }
@@ -108,26 +116,33 @@ public class MGP_11 {
         Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div[2]/a")));
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")));
         driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
         driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
         for (int i = inputData.size(); i >= 0; i--) {
             Thread.sleep(500);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores:" + i + ":botaoExcluirEmpreendedor\"]/span[2]")));
             if (driver.findElement(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores:" + i + ":botaoExcluirEmpreendedor\"]/span[2]")).isEnabled()) {
                 Thread.sleep(500);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores:" + i + ":botaoExcluirEmpreendedor\"]/span[2]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores:" + i + ":botaoExcluirEmpreendedor\"]/span[2]")).click();
             }
         }
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")));
         driver.findElement(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")));
         driver.findElement(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")).click();
 
     }
@@ -154,30 +169,37 @@ public class MGP_11 {
             Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div[2]/a")));
             driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")));
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
             for (String[] input : inputData) {
                 Thread.sleep(500);
-
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).sendKeys(input[0]);
-                Thread.sleep(500);
 
+                Thread.sleep(500);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")).click();
             }
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")));
             driver.findElement(By.xpath("//*[@id=\"formEquipe:botaoSalvar1\"]/span[2]")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")));
             driver.findElement(By.xpath("//*[@id=\"modalInfoSalvarEquipe\"]/div/div/div[3]/input")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
             List<String> comparisonData = new ArrayList();
@@ -247,26 +269,35 @@ public class MGP_11 {
             Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div[2]/a")));
             driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")));
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
             for (String[] input : inputData) {
                 Thread.sleep(500);
-
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).sendKeys(input[0]);
-                Thread.sleep(500);
 
+                Thread.sleep(500);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")).click();
 
                 Thread.sleep(500);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:mensagemErroEquipe\"]")));
                 if (!driver.findElement(By.xpath("//*[@id=\"formEquipe:mensagemErroEquipe\"]")).isDisplayed()) {
                     throw new Exception("Erro ao cadastrar email inválido");
                 }
+
+                Thread.sleep(500);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
+                driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).clear();
 
             }
 
@@ -313,14 +344,19 @@ public class MGP_11 {
             cadastrarEmails();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
             boolean error = false;
 
             for (int i = 1; i <= inputData.size(); i++) {
+
+                Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores_data\"]/tr[" + i + "]/td[1]")));
                 if (!(driver.findElement(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores_data\"]/tr[" + i + "]/td[1]"))).isDisplayed()) {
                     error = true;
                 }
+
             }
 
             if (error) {
@@ -374,18 +410,28 @@ public class MGP_11 {
             cadastrarEmails();
 
             Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
 
             for (String[] input : inputData) {
                 Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).sendKeys(input[0]);
 
                 Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")));
                 driver.findElement(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")).click();
 
-                if (!(driver.findElement(By.xpath(" //*[@id=\"formEquipe:mensagemErroEquipe\"]"))).isDisplayed()) {
+                Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:mensagemErroEquipe\"]")));
+                if (!(driver.findElement(By.xpath("//*[@id=\"formEquipe:mensagemErroEquipe\"]"))).isDisplayed()) {
                     throw new Exception("Erro ao tentar cadastrar email já cadastrado");
                 }
+
+                Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")));
+                driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).clear();
+
             }
 
             deletarEmails();

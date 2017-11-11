@@ -12,7 +12,7 @@ and open the template in the editor.
         <casodeteste Email="observador1.com"/>
         <casodeteste Email="observador2@"/>
         <casodeteste Email="observador3@.com"/>
-        <casodeteste Email="observador4@gmail.com.com.com.com"/>
+        <casodeteste Email="observador4.gmail.com.com.com.com"/>
     </suitedeteste>
 </root>
 
