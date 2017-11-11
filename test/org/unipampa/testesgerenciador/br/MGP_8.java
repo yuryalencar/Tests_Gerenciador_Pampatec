@@ -51,17 +51,16 @@ public class MGP_8 {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Métodos auxiliares">
-
     private void zerarCustos() {
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt166\"]/span[1]")).click();
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162\"]")).clear();
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162\"]")).sendKeys("0");
-        
+
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt166\"]/span[1]")).click();
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162\"]")).clear();
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162\"]")).sendKeys("0");
         System.out.println("aquifoi");
-    
+
         driver.findElement(By.xpath("//*[@id=\"formulario_cadastro_projeto:botao_adicionar_nova_linha\"]")).click();
     }
 
@@ -77,8 +76,8 @@ public class MGP_8 {
         }
     }
 
-    private void preencherCampos(boolean dataValid, List<Integer> lines, String nameMethod, 
-            boolean addEmpreendedoresError, boolean custoZero) throws Exception {
+    private void preencherCampos(boolean dataValid, List<Integer> lines, String nameMethod,
+        boolean addEmpreendedoresError, boolean custoZero) throws Exception {
         int cont = 1, casoTeste = 1;
         boolean error = false;
         String errorMessage = "O Teste apontou erros nos respectivos casos de teste presentes no arquivo:";
@@ -165,7 +164,7 @@ public class MGP_8 {
             if (!lines.isEmpty()) {
                 adicionarLinhasVariaveis(lines);
             }
-            if(custoZero){
+            if (custoZero) {
                 zerarCustos();
             }
             driver.findElement(By.id("formulario_cadastro_projeto:botaoSalvar6")).click();
@@ -197,7 +196,7 @@ public class MGP_8 {
                     }
                     screenShotError(nameMethod);
                 } else if (driver.findElement(By.id("formulario_cadastro_projeto:mensagemErroSubmissao")).getText().equals("")
-                        && !addEmpreendedoresError && custoZero){
+                        && !addEmpreendedoresError && custoZero) {
                     error = true;
                     errorMessage += "\nCaso de teste: " + casoTeste;
                     if (addEmpreendedoresError) {
@@ -273,7 +272,8 @@ public class MGP_8 {
     }
 
 //</editor-fold>
-    
+    //<editor-fold defaultstate="collapsed" desc="Finalizados">
+    @Ignore
     @Test
     public void submeterPlanoDeNegocioCustoZero() throws TestLinkAPIException {
         System.out.println("Submeter plano de negócio com Custos iguais a zero.");
@@ -297,7 +297,6 @@ public class MGP_8 {
         }
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Finalizados">
     @Ignore
     @Test
     public void submeterPlanoDeNegocioCadastroIncompletoEmpreendedores() throws TestLinkAPIException {
