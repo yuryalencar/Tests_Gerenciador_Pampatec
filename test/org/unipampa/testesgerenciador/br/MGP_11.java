@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -18,6 +19,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.unipampa.manipuladorxml.parserxml.br.ParserXML;
 import static org.unipampa.testesgerenciador.br.Login.timeToSleep;
+import org.unipampa.tests.evidenceerror.TestingSupport;
+import testlink.api.java.client.TestLinkAPIResults;
 
 /**
  *
@@ -67,7 +70,7 @@ public class MGP_11 {
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
         Thread.sleep(timeToSleep);
-        driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:0:visualizar\"]/span[2]")).click();
+        driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
         driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
@@ -108,7 +111,7 @@ public class MGP_11 {
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
         Thread.sleep(timeToSleep);
-        driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:0:visualizar\"]/span[2]")).click();
+        driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
         Thread.sleep(timeToSleep);
         driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
@@ -154,7 +157,7 @@ public class MGP_11 {
             driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
 
             Thread.sleep(timeToSleep);
-            driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:0:visualizar\"]/span[2]")).click();
+            driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
 
             Thread.sleep(timeToSleep);
             driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
@@ -204,7 +207,87 @@ public class MGP_11 {
 
         } catch (Exception e) {
 
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
         }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+
+    }
+
+    @Test
+    public void cadastrarObservadoresInvalidos() throws Exception {
+
+        String nomeCasoTeste = "Cadastrar Observadores Inválidos";
+
+        System.out.println(nomeCasoTeste);
+        parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                + "test" + System.getProperty("file.separator")
+                + "org" + System.getProperty("file.separator")
+                + "unipampa" + System.getProperty("file.separator")
+                + "testesgerenciador" + System.getProperty("file.separator")
+                + "datatests" + System.getProperty("file.separator")
+                + "MGP-11(ObservadoresInvalidos).xml");
+        List<String[]> inputData;
+
+        inputData = parser.extractDataXML("casodeteste", nomesAtributos());
+
+        try {
+            Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
+
+            Thread.sleep(timeToSleep);
+            driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
+
+            Thread.sleep(timeToSleep);
+            driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
+
+            Thread.sleep(timeToSleep);
+            driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
+
+            for (String[] input : inputData) {
+                Thread.sleep(500);
+
+                driver.findElement(By.xpath("//*[@id=\"formEquipe:autocomplete_input\"]")).sendKeys(input[0]);
+                Thread.sleep(500);
+
+                driver.findElement(By.xpath("//*[@id=\"formEquipe:j_idt203\"]")).click();
+
+                Thread.sleep(500);
+                if (!driver.findElement(By.xpath("//*[@id=\"formEquipe:mensagemErroEquipe\"]")).isDisplayed()) {
+                    throw new Exception("Erro ao cadastrar email inválido");
+                }
+
+            }
+
+        } catch (Exception e) {
+
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
+        }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
 
     }
 
@@ -250,7 +333,22 @@ public class MGP_11 {
 
         } catch (Exception e) {
 
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
         }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
 
     }
 
@@ -294,7 +392,22 @@ public class MGP_11 {
 
         } catch (Exception e) {
 
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
         }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
 
     }
 
