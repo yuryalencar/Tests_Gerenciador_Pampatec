@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="DESKTOP-L7N9T1F" name="org.unipampa.testesgerenciador.br.MGP_2" skipped="3" tests="4" time="29.34" timestamp="2017-11-07T17:18:20">
+<testsuite errors="0" failures="1" hostname="DESKTOP-L7N9T1F" name="org.unipampa.testesgerenciador.br.MGP_2" skipped="3" tests="4" time="51.438" timestamp="2017-11-11T03:33:17">
   <properties>
     <property name="netbeans.autoupdate.country" value="BR" />
     <property name="ant.file.type.rpiv_grupo1" value="file" />
@@ -44,7 +44,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="file.reference.ws-commons-util-1.0.2.jar" value="C:\Users\YURY\Documents\rp_iv_marco_i\Tests_Gerenciador_Pampatec\bibliotecasUtilizadas" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner org.unipampa.testesgerenciador.br.MGP_2 skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\test\results\TEST-org.unipampa.testesgerenciador.br.MGP_2.xml crashfile=C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\junitvmwatcher8433263312932454010.properties propsfile=C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\junit1357285819545703170.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner org.unipampa.testesgerenciador.br.MGP_2 skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\test\results\TEST-org.unipampa.testesgerenciador.br.MGP_2.xml crashfile=C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\junitvmwatcher692230383726385982.properties propsfile=C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\junit5572173516828761033.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -64,6 +64,7 @@
     <property name="ant.file.rpiv_grupo1" value="C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build.xml" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_111\jre\lib\endorsed" />
     <property name="test.includes" value="org/unipampa/testesgerenciador/br/MGP_2.java" />
+    <property name="&gt;&gt;&gt;&gt;&gt;&gt;&gt;" value="master" />
     <property name="netbeans.dynamic.classpath" value="C:\Users\Juliana\AppData\Roaming\NetBeans\8.2\core\org-openide-filesystems.jar;C:\Users\Juliana\AppData\Roaming\NetBeans\8.2\core\locale\org-openide-filesystems_ja.jar;C:\Users\Juliana\AppData\Roaming\NetBeans\8.2\core\locale\org-openide-filesystems_pt_BR.jar;C:\Users\Juliana\AppData\Roaming\NetBeans\8.2\core\locale\org-openide-filesystems_ru.jar;C:\Users\Juliana\AppData\Roaming\NetBeans\8.2\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files\NetBeans 8.2\platform\core\asm-all-5.0.1.jar;C:\Program Files\NetBeans 8.2\platform\core\core-base.jar;C:\Program Files\NetBeans 8.2\platform\core\core.jar;C:\Program Files\NetBeans 8.2\platform\core\org-netbeans-libs-asm.jar;C:\Program Files\NetBeans 8.2\platform\core\org-openide-filesystems-compat8.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core-base_ja.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core-base_pt_BR.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core-base_ru.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core-base_zh_CN.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core_ru.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-netbeans-libs-asm_ja.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-netbeans-libs-asm_pt_BR.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-netbeans-libs-asm_ru.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-netbeans-libs-asm_zh_CN.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-openide-filesystems-compat8_ja.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-openide-filesystems-compat8_pt_BR.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-openide-filesystems-compat8_ru.jar;C:\Program Files\NetBeans 8.2\platform\core\locale\org-openide-filesystems-compat8_zh_CN.jar;C:\Program Files\NetBeans 8.2\nb\core\org-netbeans-upgrader.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\core_nb.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\core_nb_ja.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\core_nb_ru.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\org-netbeans-upgrader_ru.jar;C:\Program Files\NetBeans 8.2\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
     <property name="java.vm.specification.version" value="1.8" />
     <property name="libs.hibernate4-support.src" value="" />
@@ -77,7 +78,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\null1159812419" />
+    <property name="javac.includesfile.binary" value="C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\null1192758251" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="false" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files\NetBeans 8.2\platform\modules\ext\junit-4.12.jar:C:\Program Files\NetBeans 8.2\platform\modules\ext\hamcrest-core-1.3.jar:bibliotecasUtilizadas\testlink-api-client-2.0.jar:bibliotecasUtilizadas\ws-commons-util-1.0.2.jar:bibliotecasUtilizadas\xmlrpc-client-3.1.jar:bibliotecasUtilizadas\xmlrpc-common-3.1.jar:bibliotecasUtilizadas\lib\selenium-server-standalone-3.6.0.jar:bibliotecasUtilizadas\ExtractDataXMLForTestsAndSupport.jar" />
@@ -137,6 +138,7 @@
     <property name="libs.spring-framework300.src" value="" />
     <property name="libs.Integracao.maven-pom" value="" />
     <property name="empty.dir" value="C:\Users\Juliana\Documents\NetBeansProjects\Tests_Gerenciador_Pampatec\build\empty" />
+    <property name="&lt;&lt;&lt;&lt;&lt;&lt;&lt;" value="Updated upstream" />
     <property name="version-output" value="java version &quot;1.8" />
     <property name="test.binarytestincludes" value="" />
     <property name="libs.hibernate4-persistencemodelgen.src" value="" />
@@ -308,27 +310,30 @@
     <property name="run.jvmargs" value="" />
     <property name="libs.hibernate4-persistence.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\antlr-2.7.7.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\c3p0-0.9.2.1.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-c3p0-4.3.1.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\mchange-commons-java-0.2.3.4.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\dom4j-1.6.1.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\ehcache-core-2.4.3.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-ehcache-4.3.1.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-core-4.3.1.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\jboss-logging-3.1.3.GA.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-commons-annotations-4.0.4.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-entitymanager-4.3.1.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\javassist-3.18.1-GA.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-api-1.6.1.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-simple-1.6.1.jar;C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpa-2.1-api-1.0.0.Final.jar" />
     <property name="file.reference.xmlrpc-common-3.1.jar" value="C:\Users\YURY\Documents\rp_iv_marco_i\Tests_Gerenciador_Pampatec\bibliotecasUtilizadas" />
-    <property name="dist.archive.excludes" value="" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
+    <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="C:\Program Files\NetBeans 8.2\platform\docs\testng-6.8.1-javadoc.zip" />
     <property name="user.script" value="" />
     <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files\NetBeans 8.2\ide\modules\ext\postgresql-9.4.1209.jar" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="C:\Program Files\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
     <property name="main.class" value="integracao.Integracao" />
-    <property name="libs.CopyLibs.src" value="" />
     <property name="build.dir" value="build" />
+    <property name="libs.CopyLibs.src" value="" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 9 2016" />
     <property name="file.encoding" value="Cp1252" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
-    <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
+    <property name="jdkBug6558476" value="false" />
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.Integracao.classpath" value="C:\Users\Juliana\Downloads\libs\byte-buddy-1.7.5.jar;C:\Users\Juliana\Downloads\libs\commons-codec-1.10.jar;C:\Users\Juliana\Downloads\libs\commons-exec-1.3.jar;C:\Users\Juliana\Downloads\libs\commons-logging-1.2.jar;C:\Users\Juliana\Downloads\libs\gson-2.8.0.jar;C:\Users\Juliana\Downloads\libs\guava-23.0.jar;C:\Users\Juliana\Downloads\libs\httpclient-4.5.3.jar;C:\Users\Juliana\Downloads\libs\httpcore-4.4.6.jar;C:\Users\Juliana\Downloads\libs\jna-4.1.0.jar;C:\Users\Juliana\Downloads\libs\jna-platform-4.1.0.jar" />
+    <property name="" value="======" />
   </properties>
-  <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="criarCadastroInvalido" time="0.001">
-    <skipped />
+  <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="criarCadastroInvalido" time="51.292">
+    <failure message="Caso de Teste: 8 - Erro inesperado ao cadastrar" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Caso de Teste: 8 - Erro inesperado ao cadastrar
+	at org.unipampa.testesgerenciador.br.MGP_2.criarCadastroInvalido(MGP_2.java:143)
+</failure>
   </testcase>
   <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="editarCadastroValido" time="0.0">
     <skipped />
@@ -336,83 +341,13 @@
   <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="criarCadastroValido" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="editarCadastroInvalido" time="29.19">
-    <failure message="chrome not reachable&#xa;  (Session info: chrome=61.0.3163.100)&#xa;  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.16299 x86_64) (WARNING: The server did not provide any stacktrace information)&#xa;Command duration or timeout: 0 milliseconds&#xa;Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T16:15:40.131Z&apos;&#xa;System info: host: &apos;DESKTOP-L7N9T1F&apos;, ip: &apos;192.168.130.101&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;&#xa;Driver info: org.openqa.selenium.chrome.ChromeDriver&#xa;Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\Juliana\AppData\Local\Temp\scoped_dir12884_13457}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=61.0.3163.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]&#xa;Session ID: 80ab64ae29c061b43c723807b69e18ce&#xa;*** Element info: {Using=id, value=formularioCadastro:botaoConfirmar}" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: chrome not reachable
-  (Session info: chrome=61.0.3163.100)
-  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.16299 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: &apos;3.6.0&apos;, revision: &apos;6fbf3ec767&apos;, time: &apos;2017-09-27T16:15:40.131Z&apos;
-System info: host: &apos;DESKTOP-L7N9T1F&apos;, ip: &apos;192.168.130.101&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\Juliana\AppData\Local\Temp\scoped_dir12884_13457}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=61.0.3163.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 80ab64ae29c061b43c723807b69e18ce
-*** Element info: {Using=id, value=formularioCadastro:botaoConfirmar}
-	at org.unipampa.testesgerenciador.br.MGP_2.editarCadastroInvalido(MGP_2.java:360)
-</failure>
+  <testcase classname="org.unipampa.testesgerenciador.br.MGP_2" name="editarCadastroInvalido" time="0.0">
+    <skipped />
   </testcase>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 14476
+  <system-err><![CDATA[Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 30652
 Only local connections are allowed.
-nov 07, 2017 3:18:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+nov 11, 2017 1:33:21 AM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMAÇÕES: Detected dialect: OSS
-nov 07, 2017 3:18:43 PM org.openqa.selenium.support.ui.ExpectedConditions findElement
-ADVERTÊNCIA: WebDriverException thrown by findElement(By.id: formularioCadastro:botaoConfirmar)
-org.openqa.selenium.WebDriverException: chrome not reachable
-  (Session info: chrome=61.0.3163.100)
-  (Driver info: chromedriver=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f),platform=Windows NT 10.0.16299 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T16:15:40.131Z'
-System info: host: 'DESKTOP-L7N9T1F', ip: '192.168.130.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_111'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\Juliana\AppData\Local\Temp\scoped_dir12884_13457}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=61.0.3163.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 80ab64ae29c061b43c723807b69e18ce
-*** Element info: {Using=id, value=formularioCadastro:botaoConfirmar}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:82)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:45)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:586)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:383)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementsById(RemoteWebDriver.java:406)
-	at org.openqa.selenium.By$ById.findElements(By.java:210)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:344)
-	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:881)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:643)
-	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:640)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	at org.unipampa.testesgerenciador.br.MGP_2.editarCadastroInvalido(MGP_2.java:326)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at junit.framework.JUnit4TestAdapter.run(JUnit4TestAdapter.java:38)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:1182)
-	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:1033)
-
 ]]></system-err>
 </testsuite>

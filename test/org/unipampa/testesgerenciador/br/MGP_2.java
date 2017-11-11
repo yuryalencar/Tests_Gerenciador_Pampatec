@@ -80,42 +80,24 @@ public class MGP_2 {
                 driver.findElement(By.xpath("//*[@id=\"formularioCadastro:senha\"]")).sendKeys(strings[10]);
                 driver.findElement(By.xpath("//*[@id=\"formularioCadastro:senhaConfig\"]")).sendKeys(strings[11]);
                 driver.findElement(By.id("formularioCadastro:botaoEnviar")).click();
-                
 
                 if (!driver.getTitle().equals("Verificação de e-mail")) {
                     throw new Exception("Erro ao Cadastrar");
                 }
-
-//                driver.get("https://gmail.com");
-//                driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("testetestezin@gmail.com");
-//                driver.findElement(By.id("identifierNext")).click();
-//                driver.findElement(By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input")).sendKeys("teste123456");
-//                wait.until(ExpectedConditions.elementToBeClickable(By.id("passwordNext")));
-//                driver.findElement(By.id("passwordNext")).click();
-//                driver.findElement(By.xpath("//*[@id=\"gbqfq\"]")).sendKeys("in:spam gerenciador pampatec");
-//                driver.findElement(By.xpath("//*[@id=\"gbqfb\"]")).click();
-//                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@name='Gerenciador Pampatec']")));
-//                driver.findElement(By.xpath("//*[@name='Gerenciador Pampatec']")).click();
-//                driver.findElement(By.xpath("//*[@id=\":9h\"]/div[1]/div[2]/form/div/a[2]")).click();
+                
                 Connection.updateResults("Criar cadastro válido", null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
             }
 
         } catch (Exception e) {
-            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-                    + "test" + System.getProperty("file.separator")
-                    + "org" + System.getProperty("file.separator")
-                    + "unipampa" + System.getProperty("file.separator")
-                    + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Criar cadastro");
-
+            screenshot("Criar cadastro válido");
             Connection.updateResults("Criar cadastro válido", e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
             Assert.fail(e.getMessage());
         }
     }
-    
-    @Ignore
+
     @Test
     public void criarCadastroInvalido() throws Exception {
+        int casoTeste = 0;
         try {
             parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
@@ -127,6 +109,7 @@ public class MGP_2 {
 
             List<String[]> entrada = parser.extractDataXML("casodeteste", atributosCadastrar());
             for (String[] strings : entrada) {
+                casoTeste++;
                 driver.get(url);
                 driver.findElement(By.xpath("//*[@id=\"formularioDeCadastro:botaoContinuaCadastro\"]/span[2]")).click();
                 driver.findElement(By.xpath("//*[@id=\"formularioCadastro:nome\"]")).sendKeys(strings[0]);
@@ -142,24 +125,20 @@ public class MGP_2 {
                 driver.findElement(By.xpath("//*[@id=\"formularioCadastro:senha\"]")).sendKeys(strings[10]);
                 driver.findElement(By.xpath("//*[@id=\"formularioCadastro:senhaConfig\"]")).sendKeys(strings[11]);
                 driver.findElement(By.id("formularioCadastro:botaoEnviar")).click();
-                
+
                 if (driver.getTitle().equals("Verificação de e-mail")) {
-                    throw new Exception("Cadastro realizado com erro");
+                    throw new Exception("Caso de Teste: "+casoTeste+" - Cadastro realizado com dados inválidos");
+                }else if(!driver.getTitle().equals("Realizar Cadastro")){
+                    throw new Exception("Caso de Teste: "+casoTeste+" - Erro inesperado ao cadastrar");
                 }
-                                
+
                 driver.get(url);
 
                 Connection.updateResults("Criar cadastro inválido", null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
             }
 
         } catch (Exception e) {
-            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-                    + "test" + System.getProperty("file.separator")
-                    + "org" + System.getProperty("file.separator")
-                    + "unipampa" + System.getProperty("file.separator")
-                    + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Criar cadastro");
-
+            screenshot("Criar cadastro inválido");
             Connection.updateResults("Criar cadastro inválido", e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
             Assert.fail(e.getMessage());
         }
@@ -169,7 +148,7 @@ public class MGP_2 {
     @Test
     public void editarCadastroValido() throws Exception {
         try {
-
+            
             parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
                     + "org" + System.getProperty("file.separator")
@@ -247,21 +226,18 @@ public class MGP_2 {
             }
             Connection.updateResults("Editar cadastro válido", null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
-            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-                    + "test" + System.getProperty("file.separator")
-                    + "org" + System.getProperty("file.separator")
-                    + "unipampa" + System.getProperty("file.separator")
-                    + "testesgerenciador" + System.getProperty("file.separator")
-                    + "evidenciaserro", "Editar cadastro");
-            Connection.updateResults("Editar cadastro válido", e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+            screenshot("Editar cadastro válido");
+            Connection.updateResults("Editar cadastro válinomeCasoTestedo", e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
             Assert.fail(e.getMessage());
         }
     }
 
-
+    @Ignore
     @Test
     public void editarCadastroInvalido() throws Exception {
-        int cont = 0;
+        int cont = 0, casoTeste = 0;
+        String nomeCasoTeste = "Editar cadastro inválido";
+        String mensagem = "Sistema está aceitando: "  + "\n";
         try {
             parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
                     + "test" + System.getProperty("file.separator")
@@ -272,14 +248,11 @@ public class MGP_2 {
                     + "MGP-2(EditarCadastroInvalidos).xml");
 
             List<String[]> entrada = parser.extractDataXML("casodeteste", atributosEditar());
-            Login.autenticar(driver, "julianamareco18@gmail.com", "teste123456", url);
-            if (!driver.getTitle().equals("Página Principal - Empreendedor")) {
-                throw new Exception("Verifique o pré-requisito.");
-            }
-
-            driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/a")).click();
-            driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/ul/li[1]/input")).click();
             for (String[] strings : entrada) {
+                casoTeste++;
+                Login.autenticar(driver, "julianamareco18@gmail.com", "teste123456", url);
+                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/a")).click();
+                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/ul/li[1]/input")).click();
 
                 if (!strings[0].equals("")) {
                     driver.findElement(By.id("formularioCadastro:nome")).clear();
@@ -317,43 +290,70 @@ public class MGP_2 {
                 if (!strings[8].equals("")) {
                     driver.findElement(By.id("formularioCadastro:email")).clear();
                     driver.findElement(By.id("formularioCadastro:email")).sendKeys(strings[8]);
-
                 }
+
                 driver.findElement(By.id("formularioCadastro:senhaAtual")).sendKeys(strings[9]);
                 driver.findElement(By.id("formularioCadastro:senhaNova")).sendKeys(strings[10]);
                 driver.findElement(By.id("formularioCadastro:senhaConfig")).sendKeys(strings[11]);
                 driver.findElement(By.id("formularioCadastro:botaoFinalizarEdicao")).click();
                 wait.until(ExpectedConditions.elementToBeClickable(By.id("formularioCadastro:botaoConfirmar")));
                 driver.findElement(By.id("formularioCadastro:botaoConfirmar")).click();
-                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/a")).click();
-                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/ul/li[1]/a")).click();
 
-                if (driver.findElement(By.id("formularioCadastro:nome")).getText().equals(strings[0])
-                        || driver.findElement(By.id("formularioCadastro:telefone")).getText().equals(strings[1])
-                        || driver.findElement(By.id("formularioCadastro:j_idt52")).getText().equals(strings[2])
-                        || driver.findElement(By.id("formularioCadastro:j_idt54")).getText().equals(strings[3])
-                        || driver.findElement(By.id("formularioCadastro:rua")).getText().equals(strings[4])
-                        || driver.findElement(By.id("formularioCadastro:numero")).getText().equals(strings[5])
-                        || driver.findElement(By.id("formularioCadastro:bairro")).getText().equals(strings[6])
-                        || driver.findElement(By.id("formularioCadastro:j_idt62")).getText().equals(strings[7])
-                        || driver.findElement(By.id("formularioCadastro:email")).getText().equals(strings[8])) {
-                    
-                        TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
-                        + "test" + System.getProperty("file.separator")
-                        + "org" + System.getProperty("file.separator")
-                        + "unipampa" + System.getProperty("file.separator")
-                        + "testesgerenciador" + System.getProperty("file.separator")
-                        + "evidenciaserro", "Editar cadastro");
-                        cont++;
-                
-                
+                if (driver.findElement(By.id("formularioCadastro:nome")).getAttribute("value").equals(strings[0])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de nome inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
                 }
-                           }
+                if (driver.findElement(By.id("formularioCadastro:j_idt52")).getAttribute("value").equals(strings[2])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de experiência inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:j_idt54")).getAttribute("value").equals(strings[3])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de formação inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:rua")).getAttribute("value").equals(strings[4])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de logradouro inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:numero")).getAttribute("value").equals(strings[5])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de número inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:bairro")).getAttribute("value").equals(strings[6])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de bairro inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:j_idt62")).getAttribute("value").equals(strings[7])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de complemento inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:email")).getAttribute("value").equals(strings[8]) || driver.getTitle().equals("Logout")) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de email inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
+                if (driver.findElement(By.id("formularioCadastro:telefone")).getAttribute("value").equals(strings[1])) {
+                    mensagem += "Caso de teste: " + casoTeste + "- Inserção de telefone inválido" + "\n";
+                    screenshot(nomeCasoTeste);
+                    cont++;
+                }
 
-            if(cont>0){
-                throw new Exception("Cadastro Atualizado Errado");
+                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/a")).click();
+                driver.findElement(By.xpath("//*[@id=\"menuSuperior\"]/nav/div/div[2]/ul/li[3]/ul/li[2]/a")).click();
+                System.out.println(cont);
             }
-            
+
+            if (cont > 0) {
+                throw new Exception(mensagem);
+            }
+
             Connection.updateResults("Editar cadastro inválido", null, TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
         } catch (Exception e) {
             Connection.updateResults("Editar cadastro inválido", e.getMessage(), TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
@@ -395,8 +395,17 @@ public class MGP_2 {
         return atributosEditar;
     }
 
-//    @After
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
+    public void screenshot(String nomeCasoTeste) throws Exception {
+        TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+    }
+
+    @After
+    public void closeBrowser() {
+        driver.quit();
+    }
 }
