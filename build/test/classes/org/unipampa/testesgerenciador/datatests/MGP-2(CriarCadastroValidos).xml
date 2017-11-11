@@ -7,7 +7,10 @@ and open the template in the editor.
 
 
 <root>
-    <casodeteste Nome = "Juliana Mareco Medeiros" CPF = "95035146065" Telefone = "5481988434" Experiencia = "" 
+    <casodeteste Nome = "Juliana Mareco" CPF = "13458113657" Telefone = "5481988434" Experiencia = "" 
     Formacao = "" Logradouro = "Tiaraju" Numero = "239" Bairro = "Ibirapuitã"
-    Complemento = "" Email = "julianamareco18@gmail.com" Senha = "teste123456" ConfSenha = "teste123456"/>
+    Complemento = "" Email = "novotestetestezin@gmail.com" Senha = "teste123456" ConfSenha = "teste123456"/>
+    <casodeteste Nome = "Juliana Medeiros" CPF = "38266311374" Telefone = "5481988434" Experiencia = "" 
+    Formacao = "" Logradouro = "Tiaraju" Numero = "239" Bairro = "Ibirapuitã"
+    Complemento = "" Email = "testetestezin@hotmail.com" Senha = "teste123456" ConfSenha = "teste123456"/>
 </root>

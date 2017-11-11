@@ -95,6 +95,7 @@ public class MGP_2 {
         }
     }
 
+    @Ignore
     @Test
     public void criarCadastroInvalido() throws Exception {
         int casoTeste = 0;
@@ -158,7 +159,7 @@ public class MGP_2 {
                     + "MGP-2(EditarCadastroValidos).xml");
 
             List<String[]> entrada = parser.extractDataXML("casodeteste", atributosEditar());
-            Login.autenticar(driver, "julianamareco18@gmail.com", "teste123456", url);
+            Login.autenticar(driver, "novotestetestezin@gmail.com", "teste123456", url);
             if (!driver.getTitle().equals("Página Principal - Empreendedor")) {
                 throw new Exception("Verifique o pré-requisito.");
             }
