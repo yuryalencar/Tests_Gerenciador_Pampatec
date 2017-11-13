@@ -457,6 +457,122 @@ public class MGP_11 {
 
     }
 
+     @Test
+    public void verificarCategoria() throws Exception {
+
+        String nomeCasoTeste = "Verificar Categoria";
+
+        System.out.println(nomeCasoTeste);
+        parser = new ParserXML(System.getProperty("user.dir") + System.getProperty("file.separator")
+                + "test" + System.getProperty("file.separator")
+                + "org" + System.getProperty("file.separator")
+                + "unipampa" + System.getProperty("file.separator")
+                + "testesgerenciador" + System.getProperty("file.separator")
+                + "datatests" + System.getProperty("file.separator")
+                + "MGP-11(ObservadoresValidos).xml");
+        List<String[]> inputData;
+
+        inputData = parser.extractDataXML("casodeteste", nomesAtributos());
+
+        try {
+
+            cadastrarEmails();
+
+            Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
+            driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
+
+            boolean error = false;
+
+            for (int i = 1; i <= inputData.size(); i++) {
+
+                Thread.sleep(timeToSleep);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores_data\"]/tr[" + i + "]/td[1]")));
+                if (!(driver.findElement(By.xpath("//*[@id=\"formEquipe:tabelaEmpreendedores_data\"]/tr[" + i + "]/td[2]"))).isDisplayed()) {
+                    error = true;
+                }
+
+            }
+
+            if (error) {
+                throw new Exception("Erro ao conferir a categoria do empreendedor");
+            } else {
+
+            }
+
+            deletarEmails();
+
+        } catch (Exception e) {
+
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
+        }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+
+    }
+    
+    @Test
+    public void deletarEmailsCadastrados() throws Exception {
+
+        String nomeCasoTeste = "Deletar Emails Cadastrados";
+
+        System.out.println(nomeCasoTeste);      
+
+        try {
+
+            cadastrarEmails();
+            
+            deletarEmails();
+            
+            Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
+
+            Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div[2]/a")));
+            driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
+
+            Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")));
+            driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:1:visualizar\"]/span[2]")).click();
+
+            Thread.sleep(timeToSleep);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
+            driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();            
+           
+            
+        } catch (Exception e) {
+
+            TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
+                    + "test" + System.getProperty("file.separator")
+                    + "org" + System.getProperty("file.separator")
+                    + "unipampa" + System.getProperty("file.separator")
+                    + "testesgerenciador" + System.getProperty("file.separator")
+                    + "evidenciaserro", nomeCasoTeste);
+
+            Connection.updateResults(nomeCasoTeste, e.getMessage(),
+                    TestLinkAPIResults.TEST_FAILED, TESTLINK_KEY);
+
+            Assert.fail(e.getMessage());
+
+        }
+
+        Connection.updateResults(nomeCasoTeste, null,
+                TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
+
+    }
+    
+    
     @After
     public void closeBrowser() {
         driver.quit();

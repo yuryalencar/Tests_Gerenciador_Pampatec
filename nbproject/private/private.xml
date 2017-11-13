@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Documents/NetBeansProjects/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/br/MGP_11.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/datatests/MGP-2(CriarCadastroValidos).xml</file>
+            <file>file:/D:/Documents/NetBeansProjects/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/datatests/MGP-11(ObservadoresValidos).xml</file>
+            <file>file:/D:/Documents/NetBeansProjects/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/datatests/MGP-53(SenhaEmailValidos).xml</file>
+        </group>
+    </open-files>
 </project-private>
