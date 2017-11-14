@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -148,6 +149,7 @@ public class MGP_11 {
     }
     //</editor-fold>
 
+    @Ignore
     @Test
     public void cadastrarObservadoresValidos() throws Exception {
 
@@ -220,7 +222,7 @@ public class MGP_11 {
             }
 
             if (error) {
-                throw new Exception("Erro ao conferir emails cadastrados");
+                throw new Exception("Erro ao cadastrar email");
             } else {
 
             }
@@ -248,6 +250,7 @@ public class MGP_11 {
 
     }
 
+    @Ignore
     @Test
     public void cadastrarObservadoresInvalidos() throws Exception {
 
@@ -322,6 +325,7 @@ public class MGP_11 {
 
     }
 
+    @Ignore
     @Test
     public void verificarStatus() throws Exception {
 
@@ -457,7 +461,8 @@ public class MGP_11 {
 
     }
 
-     @Test
+    @Ignore
+    @Test
     public void verificarCategoria() throws Exception {
 
         String nomeCasoTeste = "Verificar Categoria";
@@ -522,20 +527,21 @@ public class MGP_11 {
                 TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
 
     }
-    
+
+    @Ignore
     @Test
     public void deletarEmailsCadastrados() throws Exception {
 
         String nomeCasoTeste = "Deletar Emails Cadastrados";
 
-        System.out.println(nomeCasoTeste);      
+        System.out.println(nomeCasoTeste);
 
         try {
 
             cadastrarEmails();
-            
+
             deletarEmails();
-            
+
             Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
 
             Thread.sleep(timeToSleep);
@@ -548,9 +554,8 @@ public class MGP_11 {
 
             Thread.sleep(timeToSleep);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")));
-            driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();            
-           
-            
+            driver.findElement(By.xpath("//*[@id=\"botao_elaboracao_equipe\"]")).click();
+
         } catch (Exception e) {
 
             TestingSupport.saveScreenshotError(driver, System.getProperty("user.dir") + System.getProperty("file.separator")
@@ -571,8 +576,7 @@ public class MGP_11 {
                 TestLinkAPIResults.TEST_PASSED, TESTLINK_KEY);
 
     }
-    
-    
+
     @After
     public void closeBrowser() {
         driver.quit();
