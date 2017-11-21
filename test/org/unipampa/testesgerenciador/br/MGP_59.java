@@ -50,7 +50,6 @@ public class MGP_59 {
         driver.manage().window().maximize();
     }
 
-    @Ignore
     @Test
     public void verificarTodosOsFiltros() throws TestLinkAPIException {
         System.out.println("Verificar todos os Filtros");
@@ -59,59 +58,68 @@ public class MGP_59 {
         try {
             Login.autenticar(driver, "testetestezin@gmail.com", "teste123456", url);
             driver.findElement(By.xpath("/html/body/div[1]/div[2]/a")).click();
-            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]/td[4]")).
-                    getText().contains("Em elaboração")
-                    && driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[2]/td[4]")).
+
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).
+                    getText().contains("Necessita Melhoria")
+                    && driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[2]")).
                             getText().contains("Em Pré-Avaliação")) {
                 errorMessage.append("Filtro \"Todos\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
-
+            
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[2]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Em elaboração")) {
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Em elaboração")) {
                 errorMessage.append("Filtro \"Em elaboração\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[3]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Em pré-avaliação")) {
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Em pré-avaliação")) {
                 errorMessage.append("Filtro \"Em pré-avaliação\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[4]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
-                errorMessage.append("Filtro \"Necessita melhoria\" não funcionando.\n");
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Necessita Melhoria")) {
+                errorMessage.append("Filtro \"Necessita Melhoria\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[5]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
-                errorMessage.append("Filtro \"Aceito para avaliação\" não funcionando.\n");
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Aceito para Avaliação")) {
+                errorMessage.append("Filtro \"Aceito para Avaliação\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
+            System.out.println("ate aqui veio");
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[6]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Em formalização\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[7]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Nenhum plano foi encontrado")) {
                 errorMessage.append("Filtro \"Incubação\" não funcionando.\n");
                 error = true;
                 saveScreenShot();
             }
 
             driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT:j_idt47\"]/div/select/option[8]")).click();
-            if (!driver.findElement(By.id("lista_planos:singleDT_data")).getText().contains("Nenhum plano foi encontrado")) {
+            Thread.sleep(1000);
+            if (!driver.findElement(By.xpath("//*[@id=\"lista_planos:singleDT_data\"]/tr[1]")).getText().contains("Reprovado")) {
                 errorMessage.append("Filtro \"Reprovado\" não funcionando.\n");
                 error = true;
                 saveScreenShot();

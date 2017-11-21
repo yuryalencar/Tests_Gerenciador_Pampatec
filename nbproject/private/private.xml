@@ -10,5 +10,11 @@
         <group name="RPIV">
             <file>file:/C:/Users/YURY/Documents/rp_iv_marco_i/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/br/MGP_59.java</file>
         </group>
+<<<<<<< Updated upstream
+=======
+        <group name="RPIV">
+            <file>file:/C:/Users/YURY/Documents/rp_iv_marco_i/Tests_Gerenciador_Pampatec/test/org/unipampa/testesgerenciador/br/MGP_59.java</file>
+        </group>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
