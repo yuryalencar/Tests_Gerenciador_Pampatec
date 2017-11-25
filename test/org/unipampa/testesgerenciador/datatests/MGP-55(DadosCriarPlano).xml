@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <suitedetestes>
+        <casodeteste nomeProjeto="Projeto 2" segmentoClientes="Segmento1" propostaValor="Proposta1" atividadesChave="Atividade Chave 1" 
+                     relacoesClientes="Relações 1" parceriasChave="Parecerias 1" canais="Canais 1" recursos="Recursos 1" concorrentes="Concorrentes 1"
+                     tecnologia="Tecnologia 1" potencialInovacao="Potencial 1" aplicacoes="Aplicações 1" dificuldades="Dificuldades 1" interacaoUniversidade="Interações 1" 
+                     interacaoGoverno="Governo 1" infraestrutura="Infra Estrutura 1" descricaoParticipacao="Descrição 1" potencialGeracaoEmprego="Potencial Emprego 1" 
+                     fontesReceita="Fontoe Receita 1" estruturaCustos="100,00" investimentoInicial="200,00"/>
+    </suitedetestes>
+</root>
